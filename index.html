@@ -2,11 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Welcome to the Pokedex!</h1>
+    <nav>
+        <button class="loadButton" aria-label="Home">Home</button>
+        <button class="savedButton" aria-label="Saved Pokemon">Saved Pokemon</button>
+    </nav>
 
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search for a Pokemon">
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="pokemon-list"></div>
+    
+    <script src="script.js">script</script>
 </body>
+</html>
