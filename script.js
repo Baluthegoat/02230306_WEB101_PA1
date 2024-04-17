@@ -1,5 +1,5 @@
 async function getAllPokemon() {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1025');
     const data = await response.json();
     return data.results;
 }
@@ -47,3 +47,10 @@ document.getElementById('searchForm').addEventListener('submit', handleSearch);
     const pokemonList = await getAllPokemon();
     displayPokemonList(pokemonList);
 })();
+function navigateToHome() {
+    window.location.href = 'home.html';
+}
+
+function navigateToSaved() {
+    window.location.href = 'saved.html';
+}

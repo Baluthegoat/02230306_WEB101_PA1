@@ -9,10 +9,12 @@
 <body>
     <h1>Welcome to the Pokedex!</h1>
     <nav>
-        <button class="loadButton" aria-label="Home">Home</button>
-        <button class="savedButton" aria-label="Saved Pokemon">Saved Pokemon</button>
+        <div class="topnav">
+            <a class="active" href="#all pokemon">All Pokemon</a>
+            <a href="#saved">Saved</a>
+        </div>
+        
     </nav>
-
     <form id="searchForm">
         <input type="text" id="searchInput" placeholder="Search for a Pokemon">
         <button type="submit">Search</button>
