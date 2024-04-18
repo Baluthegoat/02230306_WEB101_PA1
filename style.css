@@ -1,3 +1,8 @@
+body {
+    background-image: url(../WEB101CAP/assets/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .topnav{
     background-color : white;
     overflow: hidden;
@@ -19,8 +24,11 @@
     color : white;
 } */
 #searchForm {
-    margin-top: 90px;
-    /* padding : 30px; */
+    margin-top: 50px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    size: 50px;
 }
 
 #searchInput {
@@ -34,14 +42,14 @@
 
 #searchForm button {
     padding: 5px 10px;
-    background-color: #4CAF50;
+    background-color: black;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 #searchForm button:hover {
-    background-color: #45a049;
+    background-color: red;
 }
 .pokemon-list {
     display: flex;
