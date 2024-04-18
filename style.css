@@ -43,3 +43,27 @@
 #searchForm button:hover {
     background-color: #45a049;
 }
+.pokemon-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.pokemon-item {
+    width: 450px; 
+    margin-bottom: 50px; 
+    transition: transform 0.3s ease;
+}
+.pokemon-item:hover {
+    transform: scale(1.2);
+}
+
+.pokemon-item {
+    width: 450px;
+    margin-bottom: 50px;
+    transition: transform 0.3s ease;
+}
+.pokemon-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+}

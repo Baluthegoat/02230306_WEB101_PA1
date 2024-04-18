@@ -1,5 +1,5 @@
 async function getAllPokemon() {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1025');
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
     const data = await response.json();
     return data.results;
 }
@@ -18,11 +18,33 @@ async function displayPokemonList(pokemonList){
         </ul>
     `;
 }
+async function getPokemonDetails() {
+    const response = await fetch('https://pokeapi.co/api/v2/type/3');
+    const data = await response.json();
+    return data;
+}
+async function displayPokemonDetails(pokemonDetails) {
+    const pokemonDetailsContainer = document.getElementById('pokemon-details');
 
+    pokemonDetailsContainer.innerHTML = `
+        <h2>${pokemonDetails.name}</h2>
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${extractPokemonNumber(pokemonDetails.url)}.png" alt="${pokemonDetails.name}" />
+    `;
+}
 function extractPokemonNumber(url) {
     const parts = url.split('/');
     return parts[parts.length - 2];
 }
+async function handlePokemonClick(event) {
+    const pokemonName = event.target.closest('.pokemon-item').dataset.name;
+    const allPokemon = await getAllPokemon();
+    const clickedPokemon = allPokemon.find(pokemon => pokemon.name === pokemonName);
+    const response = await fetch(clickedPokemon.url);
+    const data = await response.json();
+    displayPokemonDetails(data);
+}
+document.getElementById('pokemon-list').addEventListener('click', handlePokemonClick);
+
 async function searchPokemon(searchQuery) {
     const allPokemon = await getAllPokemon();
     const filteredPokemon = allPokemon.filter(pokemon => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -47,10 +69,3 @@ document.getElementById('searchForm').addEventListener('submit', handleSearch);
     const pokemonList = await getAllPokemon();
     displayPokemonList(pokemonList);
 })();
-function navigateToHome() {
-    window.location.href = 'home.html';
-}
-
-function navigateToSaved() {
-    window.location.href = 'saved.html';
-}
