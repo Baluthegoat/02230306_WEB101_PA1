@@ -1,77 +1,53 @@
 body {
-    background-image: url(../WEB101CAP/assets/background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #29bdc1;
 }
-.topnav{
-    background-color : white;
-    overflow: hidden;
+h1 {
+    text-align: center;
+    padding: 20px 0;
 }
-.topnav{
-    float : left;
-    color : #f2f2f2;
-    text-align : center;
-    padding : 14px 16px;
-    text-decoration : none;
-    font-size: 17px;
+.main{
+    width: 80%;
+    margin: 0 auto;
 }
-.topnav a:hover{
-    background-color : #ddd;
-    color : black;
-}
-/* .topnav a.active{
-    background-color : #04aa6d;
-    color : white;
-} */
-#searchForm {
-    margin-top: 50px;
-    padding: 30px;
+.header{
     display: flex;
-    justify-content: center;
-    size: 50px;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.1);
 }
-
-#searchInput {
-    padding: 5px;
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.search {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    
+}
+.search input {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-right: 10px;
     width: 200px;
 }
 
-#searchInput:focus {
-    outline: none;
-}
-
-#searchForm button {
-    padding: 5px 10px;
-    background-color: black;
-    color: white;
+.search button {
+    padding: 10px 20px;
     border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #fff;
     cursor: pointer;
-}
-
-#searchForm button:hover {
-    background-color: red;
-}
-.pokemon-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.pokemon-item {
-    width: 450px; 
-    margin-bottom: 50px; 
-    transition: transform 0.3s ease;
-}
-.pokemon-item:hover {
-    transform: scale(1.2);
-}
-
-.pokemon-item {
-    width: 450px;
-    margin-bottom: 50px;
-    transition: transform 0.3s ease;
-}
-.pokemon-item img {
-    width: 100%;
-    height: 100px;
-    object-fit: contain;
 }
