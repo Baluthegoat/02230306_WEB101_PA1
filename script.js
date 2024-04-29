@@ -1,57 +1,54 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const pokemonContainer = document.getElementById('pokemonContainer');
-
-    async function fetchPokemon(url) {
-        const response = await fetch(url);
+fetch("https://pokeapi.co/api/v2/pokemon?limit=1000")
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+async function fetchPokemonList() {
+    try {
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
-        return data;
+        return data.results;
+    } catch (error) {
+        console.error('Error fetching Pokemon list:', error);
+        return [];
     }
+}
 
-    async function displayPokemonList() {
-        const response = await fetchPokemon('https://pokeapi.co/api/v2/pokemon?limit=1000');
-        const pokemonList = response.results;
+async function fetchPokemonData(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
 
-        pokemonContainer.innerHTML = '';
+async function displayPokemonList() {
+    const pokemonList = await fetchPokemonList();
+    const pokemonContainer = document.querySelector('.pokemon-list .container');
 
-        pokemonList.forEach(async pokemon => {
-            const pokemonData = await fetchPokemon(pokemon.url);
-
-            const pokemonCard = document.createElement('div');
-            pokemonCard.classList.add('pokemon');
-
-            pokemonCard.innerHTML = `
-                <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">
-                <h3>${pokemonData.name}</h3>
-                <p>Type: ${pokemonData.types.map(type => type.type.name).join(', ')}</p>
-            `;
-
-            pokemonContainer.appendChild(pokemonCard);
-        });
-    }
-
-    displayPokemonList();
-
-    document.getElementById('searchForm').addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent form submission
-        
-        const searchInput = document.getElementById('searchInput');
-        const searchQuery = searchInput.value.toLowerCase();
-        searchInput.value = ''; // Clear input field after search
-
-        const response = await fetchPokemon(`https://pokeapi.co/api/v2/pokemon/${searchQuery}`);
-        const pokemonData = response;
-
-        pokemonContainer.innerHTML = '';
-
-        const pokemonCard = document.createElement('div');
-        pokemonCard.classList.add('pokemon');
-
-        pokemonCard.innerHTML = `
-            <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">
+    for (const pokemon of pokemonList) {
+        const pokemonData = await fetchPokemonData(pokemon.url);
+        const pokemonElement = document.createElement('div');
+        pokemonElement.classList.add('pokemon-item');
+        pokemonElement.innerHTML = `
             <h3>${pokemonData.name}</h3>
-            <p>Type: ${pokemonData.types.map(type => type.type.name).join(', ')}</p>
+            <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}" />
         `;
 
-        pokemonContainer.appendChild(pokemonCard);
-    });
-});
+        pokemonContainer.appendChild(pokemonElement);
+    }
+}
+displayPokemonList();
+
+async function fetchPokemonSpecies(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
+
+async function getSpeciesData() {
+    const speciesData = await fetchPokemonSpecies('https://pokeapi.co/api/v2/pokemon-species?limit=1000');
+    console.log(speciesData);
+}
+
+getSpeciesData();
