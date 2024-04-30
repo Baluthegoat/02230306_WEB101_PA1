@@ -1,54 +1,33 @@
-fetch("https://pokeapi.co/api/v2/pokemon?limit=1000")
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log(error));
-async function fetchPokemonList() {
-    try {
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        return data.results;
-    } catch (error) {
-        console.error('Error fetching Pokemon list:', error);
-        return [];
-    }
-}
-
 async function fetchPokemonData(url) {
     const response = await fetch(url);
     const data = await response.json();
     return data;
 }
 
-async function displayPokemonList() {
-    const pokemonList = await fetchPokemonList();
-    const pokemonContainer = document.querySelector('.pokemon-list .container');
+async function createPokemonCards() {
+    const pokemonData = await fetchPokemonData('https://pokeapi.co/api/v2/pokemon?limit=1000');
+    const container = document.querySelector('.container');
 
-    for (const pokemon of pokemonList) {
-        const pokemonData = await fetchPokemonData(pokemon.url);
-        const pokemonElement = document.createElement('div');
-        pokemonElement.classList.add('pokemon-item');
-        pokemonElement.innerHTML = `
-            <h3>${pokemonData.name}</h3>
-            <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}" />
+    pokemonData.results.forEach(async (pokemon) => {
+        const pokemonDetails = await fetchPokemonData(pokemon.url);
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = `
+            <div class="card-header">
+                <h3>${pokemonDetails.name}</h3>
+                <img src="${pokemonDetails.sprites.front_default}" alt="${pokemonDetails.name} Image">
+            </div>
+            <div class="card-body">
+                <p><b>Type:</b> <span>${pokemonDetails.types[0].type.name}</span></p>
+            </div>
         `;
-
-        pokemonContainer.appendChild(pokemonElement);
-    }
-}
-displayPokemonList();
-
-async function fetchPokemonSpecies(url) {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
+        card.addEventListener('click', () => {
+            window.location.href = `details.html?id=${pokemonDetails.id}`;
+        
+        })
+        container.appendChild(card);
+    });
 }
 
-async function getSpeciesData() {
-    const speciesData = await fetchPokemonSpecies('https://pokeapi.co/api/v2/pokemon-species?limit=1000');
-    console.log(speciesData);
-}
+createPokemonCards();
 
-getSpeciesData();

@@ -56,10 +56,6 @@ h2 {
     color: #fff;
     cursor: pointer;
 }
-.list-filter{
-    text-align: justify;
-    padding: 20px 20px;
-}
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -69,12 +65,31 @@ h2 {
     text-align: center;
 }
 .container img {
-    margin: 20px 100px;
+    margin: 20px 10px;
     padding: auto;
     width: 200px;
-    background-color:  black;
+    background-color: white;
     border-radius: 100px;
 }
 .container img:hover {
     transform: scale(1.1);
+}
+.card {
+    width: 250px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 50px;
+}
+.card-header h1 {
+    font-size: 24px;
+    margin-right: 10px;
+} 
+.card-body p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+  
+.card-body span {
+    font-weight: bold;
 }
