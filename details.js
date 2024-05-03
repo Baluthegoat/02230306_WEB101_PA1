@@ -27,3 +27,14 @@ function displayPokemonDetails(pokemon) {
        
     `;
 }
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the back button element
+    const backButton = document.getElementById('backButton');
+
+    // Add event listener to navigate back to index.html when the back button is clicked
+    backButton.addEventListener('click', function() {
+        window.location.href = 'index.html';
+    });
+
+    // Other code for displaying Pokémon details goes here
+});
