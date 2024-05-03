@@ -18,16 +18,35 @@ async function createPokemonCards() {
                 <img src="${pokemonDetails.sprites.front_default}" alt="${pokemonDetails.name} Image">
             </div>
             <div class="card-body">
-                <p><b>Type:</b> <span>${pokemonDetails.types[0].type.name}</span></p>
+                <p><b>Type:</b> <span>${pokemonDetails.types.map(type => type.type.name).join(', ')}</span></p>
+                <p><b>Strength:</b> <span>${pokemonDetails.base_experience}</span></p>
+                <p><b>HP:</b> <span>${pokemonDetails.stats[0].base_stat}</span></p>
+                <button onclick="showPokemonDetails('${pokemonDetails.name}')">Details</button>
             </div>
         `;
-        card.addEventListener('click', () => {
-            window.location.href = `details.html?id=${pokemonDetails.id}`;
-        
-        })
         container.appendChild(card);
     });
 }
 
-createPokemonCards();
+async function showPokemonDetails(pokemonName) {
+    const pokemonData = await fetchPokemonData(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+    if (pokemonData.name) {
+        localStorage.setItem('pokemonDetails', JSON.stringify(pokemonData));
+        window.location.href = 'details.html';
+    } else {
+        alert('Pokemon not found!');
+    }
+}
 
+async function searchPokemon() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const pokemonData = await fetchPokemonData(`https://pokeapi.co/api/v2/pokemon/${searchInput}`);
+    if (pokemonData.name) {
+        localStorage.setItem('pokemonDetails', JSON.stringify(pokemonData));
+        window.location.href = 'details.html';
+    } else {
+        alert('Pokemon not found!');
+    }
+}
+
+createPokemonCards();

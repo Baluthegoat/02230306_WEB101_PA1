@@ -21,15 +21,15 @@ h2 {
     border-radius: 50px;
 }
 .logo{
-    display: flex;
-    align-items: center;
+    width: 100px;
+    height: 100px;
+    padding-top: 50px;
 }
 .logo img{
     width: 150px;
     height: 150px;
     margin-right: 0px;
     border-radius: 70%;
-    padding: 40px 0 10px 0px;
 }
 .search {
     display: flex;
@@ -67,7 +67,7 @@ h2 {
 .container img {
     margin: 20px 10px;
     padding: auto;
-    width: 200px;
+    width: 100px;
     background-color: white;
     border-radius: 100px;
 }
@@ -75,7 +75,7 @@ h2 {
     transform: scale(1.1);
 }
 .card {
-    width: 250px;
+    width: 200px;
     padding: 20px;
     border: 1px solid black;
     border-radius: 10px;
