@@ -36,6 +36,7 @@ h2 {
     align-items: center;
     margin: auto;
     justify-content: center;
+    margin-top: -155px;
     
     
 }
@@ -94,7 +95,7 @@ h2 {
     font-weight: bold;
 }
 #favorites {
-    padding: 10px 20px;
+    padding: 10px 50px;
     border: none;
     border-radius: 5px;
     background-color: #ffcc00;
@@ -102,6 +103,8 @@ h2 {
     cursor: pointer;
     text-decoration: none;
     margin-top: 10px;
+    display: flex;
+    margin-top: -50px;
 }
 
 #favorites:hover {
