@@ -2,15 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    /* height: vh; */
 }
 
 .card {
-    width: 300px;
+    width: 1000px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 20px;
-    margin: 20px auto;
+    margin: 50px auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

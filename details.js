@@ -8,7 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function displayPokemonDetails(pokemon) {
+async function fetchPokemonSpecies(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+}
+
+async function displayPokemonDetails(pokemon) {
     const pokemonName = document.getElementById('pokemon-name');
     const pokemonImage = document.getElementById('pokemon-image');
     const pokemonDetailsContainer = document.getElementById('pokemon-details');
@@ -16,25 +22,33 @@ function displayPokemonDetails(pokemon) {
     pokemonName.textContent = pokemon.name;
     pokemonImage.src = pokemon.sprites.front_default;
 
-    const types = pokemon.types.map(type => type.type.name).join(', ');
-    const strength = pokemon.base_experience;
-    const hp = pokemon.stats[0].base_stat;
+    const id = pokemon.id;
+    const moves = pokemon.moves.map(move => move.move.name).join(', ');
+
+    // Fetch species details to get habitat and gender information
+    const speciesData = await fetchPokemonSpecies(pokemon.species.url);
+    const habitat = speciesData.habitat ? speciesData.habitat.name : 'Unknown';
+    const genderRate = speciesData.gender_rate;
+    const genderRatio = genderRate === -1 ? 'Genderless' : `Male: ${(8 - genderRate) * 12.5}%, Female: ${genderRate * 12.5}%`;
+
+    // Fetch stats details to get HP and strength
+    const stats = pokemon.stats;
+    const hp = stats.find(stat => stat.stat.name === 'hp').base_stat;
+    // Assuming strength corresponds to attack stat
+    const attack = stats.find(stat => stat.stat.name === 'attack').base_stat;
 
     pokemonDetailsContainer.innerHTML = `
-        <p><b>Type:</b> <span>${types}</span></p>
-        <p><b>Strength:</b> <span>${strength}</span></p>
+        <p><b>ID:</b> <span>${id}</span></p>
+        <p><b>Moves:</b> <span>${moves}</span></p>
         <p><b>HP:</b> <span>${hp}</span></p>
-       
+        <p><b>Attack:</b> <span>${attack}</span></p>
+        <p><b>Habitat:</b> <span>${habitat}</span></p>
     `;
 }
-document.addEventListener('DOMContentLoaded', function() {
-    // Get the back button element
-    const backButton = document.getElementById('backButton');
 
-    // Add event listener to navigate back to index.html when the back button is clicked
+document.addEventListener('DOMContentLoaded', function() {
+    const backButton = document.getElementById('backButton');
     backButton.addEventListener('click', function() {
         window.location.href = 'index.html';
     });
-
-    // Other code for displaying Pokémon details goes here
 });

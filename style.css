@@ -93,3 +93,18 @@ h2 {
 .card-body span {
     font-weight: bold;
 }
+#favorites {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffcc00;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+#favorites:hover {
+    background-color: #ffdb4d;
+}
+

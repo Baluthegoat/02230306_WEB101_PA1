@@ -1,0 +1,61 @@
+/* favorites.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.card-header {
+    margin-bottom: 10px;
+}
+
+.card-body button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.card-body button:hover {
+    background-color: #d32f2f;
+}
+#backButton {
+    display: block;
+    width: 100px;
+    padding: 10px 15px;
+    margin: 20px auto;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
